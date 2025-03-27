@@ -1,0 +1,48 @@
+CREATE DATABASE FACUL;
+USE FACUL;
+
+CREATE TABLE ALUNOS (
+id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+nome VARCHAR(60) NOT NULL,
+data_nascimento DATE,
+email VARCHAR(100) NOT NULL
+);
+
+INSERT INTO ALUNOS (nome, data_nascimento, email) VALUES ("Caua Lucas", "2005-11-17", "caualucas@gmail.com");
+
+CREATE TABLE USUARIOs (
+usuario VARCHAR(100) NOT NULL,
+senha VARCHAR(100) NOT NULL
+);
+
+INSERT INTO USUARIOs (usuario, senha) VALUES ("Caua_Unifaat", "estudandeads2025");
+
+DELIMITER //
+CREATE PROCEDURE InserirUsuario (IN u VARCHAR(60), IN s VARCHAR(100))
+BEGIN
+INSERT INTO USUARIOs(usuario, senha) VALUES (u, s);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE Aluno ()
+BEGIN
+SELECT * FROM ALUNOS;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE AlterarUsuario ()
+BEGIN
+UPDATE USUARIOs SET usuario = "Silveira";
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ApagarEmail ()
+BEGIN
+DELETE FROM ALUNOS WHERE email = "caualucas@gmail.com";
+END //
+DELIMITER ;
+
+
